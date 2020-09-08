@@ -47,13 +47,9 @@ reg [7:0] out ;
 
 always @ (posedge clk)
 begin
-	out1 = {in,out1[9:1]};
-	out = out1[7:0] ;
-
-    if (~clear)
-    	parity = in ^ parity;
-    else 
-       	parity = 0 ;    
+	out1 <= {in,out1[9:1]};
+	out <= out1[8:1] ;
+	parity <= (~clear) &(in ^ parity);  
 end 
 
 endmodule
